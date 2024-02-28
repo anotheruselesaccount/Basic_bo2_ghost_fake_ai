@@ -15,8 +15,16 @@ main()
 {
 }
 
+disable_out_of_playable_area_callback()
+{
+	if(is_true(level.player_out_of_playable_area_monitor))
+		level.player_out_of_playable_area_monitor = false;
+}
+
 init()
 {
+	maps\mp\zombies\_zm_utility::onplayerconnect_callback( ::disable_out_of_playable_area_callback );
+
 	level.round_spawn_func = ::setup_round_logic;
     level.round_wait_func = ::round_wait;
 
